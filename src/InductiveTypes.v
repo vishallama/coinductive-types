@@ -39,3 +39,29 @@ Check (nil (A := nat)).
 Check (nil (A := nat -> nat)).
 Check (fun A : Set => (cons (A := A))).
 Check (cons 1 (cons 2 (cons 3 nil))).
+
+
+(* 2.5 Relations as inductive types *)
+
+(* In the definiton of le, n is a general parameter, while the second
+   argument of le is an index, which is instantiated differently in the
+   introduction rules. Such types parameterized by regular values are called
+   dependent types. *)
+Print le.
+
+Theorem zero_leq_three : O <= 3.
+Proof.
+  (* Use a direct proof *)
+  apply (le_S O 2 (le_S O 1 (le_S O O (le_n O)))).
+Qed.
+
+Theorem zero_leq_three' : O <= 3.
+Proof.
+  (* Automated proof *)
+  repeat constructor.
+Qed.
+
+Print lt.
+
+Lemma zero_lt_three : O < 3.
+Proof. unfold lt; repeat constructor. Qed.
