@@ -1,5 +1,7 @@
-Module Nat.
 (* 2 - Introducing Inductive Types *)
+
+
+Module Nat.
 
 (* Inductive types are types closed with respect to their introduction rules.
    These rules explain the most basic or canonical ways of constructing an
