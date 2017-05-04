@@ -25,3 +25,17 @@ Inductive nat : Set :=
       nat is closed, whereas Set is an open type, since we do not know
       a priori all the possible ways of introducing an object of type Set. *)
 End Nat.
+
+
+(* 2.1 Lists *)
+Require Import List.
+Print list.
+
+(* In the definition of list, A is a general parameter, global to both
+   constructors. This kind of definition allows us to build a whole family of
+   inductive types, indexed over the sort Type. *)
+Check list.
+Check (nil (A := nat)).
+Check (nil (A := nat -> nat)).
+Check (fun A : Set => (cons (A := A))).
+Check (cons 1 (cons 2 (cons 3 nil))).
