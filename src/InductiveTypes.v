@@ -1,4 +1,4 @@
-Module InductiveTypes.
+Module Nat.
 (* 2 - Introducing Inductive Types *)
 
 (* Inductive types are types closed with respect to their introduction rules.
