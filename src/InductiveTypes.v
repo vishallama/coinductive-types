@@ -22,3 +22,4 @@ Inductive nat : Set :=
       rule S to a previously constructed natural number object. In this sense,
       nat is closed, whereas Set is an open type, since we do not know
       a priori all the possible ways of introducing an object of type Set. *)
+End Nat.
