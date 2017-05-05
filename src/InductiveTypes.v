@@ -94,3 +94,37 @@ Proof. reflexivity. Qed.
 
 Lemma eq_Set_Set : Set = Set.
 Proof. reflexivity. Qed.
+
+
+(* 2.7 Logical connectives *)
+
+(* The type sumbool is a disjunction but with computational contents. This
+   type can be used in Coq programs as a sort of boolean type to check whether
+   it is A or B that is true. The values 'left p' and 'right q' replace the
+   boolean values true and false, respectively. The advantage of this type
+   over bool is that it makes available the proofs p of A or q of B, which
+   could be necessary to construct a verification proof about the program. *)
+Print sumbool.
+
+Require Import Compare_dec.
+Check le_lt_dec.
+
+Definition max (n p : nat) :=
+  match le_lt_dec n p with
+  | left _ => p
+  | right _ => n
+  end.
+
+(* In the following proof, the case analysis on the term 'le_lt_dec n p'
+   gives us access to proofs of n <= p in the first case, p < n in the
+   other *)
+Theorem le_max : forall n p, n <= p -> max n p = p.
+Proof.
+  intros n p; unfold max; case (le_lt_dec n p); simpl.
+  - (* n <= p *) intros; reflexivity.
+  - (* p < n *) intros; absurd (p < p); eauto with arith.
+Qed.
+
+(* Once the program is verified, the proofs are erased by the extraction
+   procedure *)
+Extraction max.
