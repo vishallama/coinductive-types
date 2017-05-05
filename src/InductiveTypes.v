@@ -128,3 +128,25 @@ Qed.
 (* Once the program is verified, the proofs are erased by the extraction
    procedure *)
 Extraction max.
+
+
+(* 2.9 Mutually Dependent Definitions *)
+
+(* Trees of unbounded (but finite) width *)
+Inductive tree (A : Set) : Set :=
+| Node : A -> forest A -> tree A
+
+with forest (A : Set) : Set :=
+| NoChild : forest A
+| AddChild : tree A -> forest A -> forest A.
+
+(* Even and odd natural numbers *)
+Inductive even : nat -> Prop :=
+| evenO : even O
+| evenS : forall n, odd n -> even (S n)
+
+with odd : nat -> Prop :=
+| oddS : forall n, even n -> odd (S n).
+
+Lemma odd_49 : odd (7*7).
+Proof. simpl; repeat constructor. Qed.
