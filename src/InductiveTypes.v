@@ -65,3 +65,32 @@ Print lt.
 
 Lemma zero_lt_three : O < 3.
 Proof. unfold lt; repeat constructor. Qed.
+
+
+(* 2.6 The propositional equality type *)
+
+(* In Coq, the propositional equality between two inhabitants a and b of the
+   same type A, denoted a = b, is introduced as a family of recursive
+   predicates, parameterized by both a and its type A. This family of types
+   has only one introduction rule, which corresponds to reflexivity. The
+   syntax 'a = b' is an abbreviation for 'eq a b', and the parameter A is
+   implicit. *)
+Print eq.
+
+(* The type system of Coq allows us to consider equality between various
+   kinds of terms: elements of a set, proofs, propositions, types, and so
+   on. *)
+Lemma eq_3_3 : 2 + 1 = 3.
+Proof. reflexivity. Qed.
+
+Lemma eq_proof_proof : eq_refl (2*6) = eq_refl (3*4).
+Proof. reflexivity. Qed.
+
+Lemma eq_lt_le : (2 < 4) = (3 <= 4).
+Proof. reflexivity. Qed.
+
+Lemma eq_nat_nat : nat = nat.
+Proof. reflexivity. Qed.
+
+Lemma eq_Set_Set : Set = Set.
+Proof. reflexivity. Qed.
