@@ -66,3 +66,21 @@ Theorem nat_expand : forall n : nat,
 Proof.
   intro n; induction n; reflexivity.
 Qed.
+
+(* The Empty type *)
+
+(* The rule of (non-dependent) case analysis for the type False is (for
+   s in Prop, Set or Type):
+
+     Q : s    p : False
+    --------------------
+     match p return Q with end : Q
+*)
+
+Theorem fromFalse : False -> 0 = 1.
+Proof. intros; contradiction. Qed.
+
+Print not.
+
+Fact Nosense : O <> O -> 2 = 3.
+Proof. intro H; case H; reflexivity. Qed.
