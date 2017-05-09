@@ -42,4 +42,4 @@
      match n as nO return Q nO with | O => tO | S p => tS end : Q n
 
    The former, non-dependent version of case analysis can be obtained from
-   this latter rule by taking Q as a constant function on n.
+   this latter rule by taking Q as a constant function on n. *)
