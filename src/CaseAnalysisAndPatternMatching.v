@@ -56,3 +56,13 @@ Defined.
 
 Print predecessor.
 Extraction predecessor.
+
+(* Exercise 3.1 *)
+Theorem nat_expand : forall n : nat,
+  n = match n with
+      | O => O
+      | S p => S p
+      end.
+Proof.
+  intro n; induction n; reflexivity.
+Qed.
