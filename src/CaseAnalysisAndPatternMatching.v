@@ -43,3 +43,16 @@
 
    The former, non-dependent version of case analysis can be obtained from
    this latter rule by taking Q as a constant function on n. *)
+
+(* Strong specification of the predecessor function *)
+Definition pred_spec (n : nat) :=
+  { m : nat | n = O /\ m = O \/ n = S m }.
+
+Definition predecessor : forall n : nat, pred_spec n.
+  intro n; case n.
+  unfold pred_spec; exists O; auto.
+  unfold pred_spec; intro n'; exists n'; auto.
+Defined.
+
+Print predecessor.
+Extraction predecessor.
